@@ -2,8 +2,8 @@ import scrapy
 from ..items import BetscrapItem
 
 
-class QuotesSpider(scrapy.Spider):
-    name = "quotes"
+class HLTVSpider(scrapy.Spider):
+    name = "hltv_spider"
     start_urls = [
         'https://www.hltv.org/matches/2341154/astralis-vs-g2-esl-one-road-to-rio-europe',
     ]
