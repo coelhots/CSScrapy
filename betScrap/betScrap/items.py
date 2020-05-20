@@ -13,9 +13,9 @@ class BetscrapItem(scrapy.Item):
     # name = scrapy.Field()
     game_date = scrapy.Field()
     game_time = scrapy.Field()
-    game_teamName1 = scrapy.Field()
-    game_won = scrapy.Field()
-    game_teamName2 = scrapy.Field()
-    game_lost = scrapy.Field()
-
+    game_team1Name = scrapy.Field()
+    game_team1Result = scrapy.Field()
+    game_team2Name = scrapy.Field()
+    game_team2Result = scrapy.Field()
+    game_info = scrapy.Field()
     pass
