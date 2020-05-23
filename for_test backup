@@ -1,0 +1,26 @@
+import scrapy
+from ..items import BetscrapItem
+
+
+class QuotesSpider(scrapy.Spider):
+    name = "hltv_spider"
+    start_urls = [
+        'https://www.hltv.org/results'
+    ]
+
+    def parse(self, response):
+        for quote in response.css('.contentCol'):
+            event_title = quote.css('.eventname::text').get()
+            event_date = quote.css('.eventdate span::text').getall()
+            prize_pool = quote.css('.prizepool.text-ellipsis::text').get()
+            teams = quote.css('td.teamsNumber::text').get()
+            location = quote.css('.gtSmartphone-only .flag::attr(src) ,.gtSmartphone-only .text-ellipsis::text').extract()
+            prize_dist = quote.css('.top-placement:nth-child(1) .team-logo::text').get()
+            yield {
+                'event_title': event_title,
+                'event_date': event_date,
+                'prize_pool': prize_pool,
+                'teams': teams,
+                'location': location,
+                'prize_dist': prize_dist
+            }
