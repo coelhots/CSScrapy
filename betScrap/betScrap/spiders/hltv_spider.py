@@ -4,6 +4,7 @@ from ..items import BetscrapItem
 
 class HLTVSpider(scrapy.Spider):
     name = "hltv_spider"
+    page_number = 100
     start_urls = [
         "https://www.hltv.org/results"
     ]
@@ -42,3 +43,7 @@ class HLTVSpider(scrapy.Spider):
                     'event_title': event_title,
                     'best_of': best_of
                 }
+        next_page = 'https://www.hltv.org/results?offset=' + str(HLTVSpider.page_number)
+        if HLTVSpider.page_number <= 55000:
+            HLTVSpider.page_number += 100
+            yield response.follow(next_page, callback = self.parse)
